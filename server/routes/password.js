@@ -1,8 +1,8 @@
 const express = require("express");
+const { createPassword, getPasswords } = require("../controllers/password");
 const router = express.Router();
 
-router.get("/create-password", async(req,res) => {
-    console.log(req.body);
-})
+router.post("/create-password", createPassword);
+router.post("/get-passwords", getPasswords);
 
 module.exports = router;

@@ -1,3 +1,7 @@
+"use client"
+
+import dynamic from "next/dynamic";
+
 const Dashboard = () => {
     return (
         <div>
@@ -6,4 +10,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default dynamic(() => Promise.resolve(Dashboard), { ssr: false });

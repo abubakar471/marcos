@@ -1,6 +1,7 @@
 "use client"
 
 import { useAuth, UserButton } from "@clerk/nextjs"
+import dynamic from "next/dynamic";
 
 const AuthNavbar = () => {
     const { userId } = useAuth();
@@ -15,4 +16,4 @@ const AuthNavbar = () => {
     )
 }
 
-export default AuthNavbar
+export default dynamic(() => Promise.resolve(AuthNavbar), { ssr: false });
