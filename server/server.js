@@ -1,13 +1,11 @@
-import express from "express"
-import dotenv from "dotenv"
-import mongoose from "mongoose"
-import cors from "cors"
-import cookieParser from "cookie-parser"
-
+const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+const cors = require("cors");
+const fs = require("fs");
 
 // dotenv
-dotenv.config();
+require("dotenv").config();
 
 // connect databse
 mongoose.connect(process.env.MONGO_URI)
@@ -23,7 +21,10 @@ app.use(cors({
     origin: process.env.CLIENT_URL
 }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+
+// routes
+fs.readdirSync('./routes').map((r) => app.use('/api', require(`./routes/${r}`)));
 
 const port = process.env.PORT || 8080;
 

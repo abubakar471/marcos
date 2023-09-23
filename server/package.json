@@ -4,7 +4,7 @@
   "description": "marcos backend server",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon -r esm server.js"
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",

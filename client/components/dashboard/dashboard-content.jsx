@@ -4,6 +4,7 @@ import { useState } from "react"
 // import Modal from "../modal/modal";
 import Modal from '@mui/material/Modal';
 import ModalContents from "../modal-contents/modal-contents";
+import axios from "axios"
 
 const DashboardContent = ({ active }) => {
     const [open, setOpen] = useState(false);
