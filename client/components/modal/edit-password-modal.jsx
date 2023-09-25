@@ -6,7 +6,8 @@ const EditPasswordModal = ({ open, setOpen,
     optional, setOptional, handleEditSubmit, editModalData, loading, error }) => {
     return (
         <div>
-            <div className="mx-auto my-12 w-[50%] 800px:w-[60%] h-[90vh] 800px:h-[75vh]  overflow-y-auto bg-white shadow-sm rounded-md relative p-4 ">
+            <div className="mx-auto my-12 w-[90%] md:w-[50%] lg:w-[50%] xl:w-[50%] 
+            800px:w-[60%] h-[90vh] 800px:h-[75vh]  overflow-y-auto bg-white shadow-sm rounded-md relative p-4 ">
                 <RxCross1
                     size={30}
                     className="absolute right-3 top-3 z-50 cursor-pointer"
