@@ -96,6 +96,7 @@ const Home = () => {
                 </div>
             </header>
 
+            {/* about us */}
             {/* <section>
                 <div className="w-1/2">
                     image
