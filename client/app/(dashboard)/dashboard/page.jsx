@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="overflow-y-hidden">
             Dashboard
         </div>
     )

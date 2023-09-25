@@ -1,11 +1,19 @@
 const Navbar = () => {
-    return(
-        <nav className="w-[90%] mx-auto">
-           <div>
-            <img 
-            className="w-[90px] h-[80px]"
-            src="https://www.logomaker.com/api/main/images/1j+ojlxEOMkX9Wyqfhe43D6kh...OGqxVLnBzOwXs1M3EMoAJtlikohfpt8fk6PExevg9C3ktKMcs8" alt="" />
-           </div>
+    return (
+        <nav className="w-full bg-gradient-to-tr from-[#000E11] via-[#00405E] to-[#00202D] outline-transparent border-collapse">
+            <div className="w-[90%] mx-auto py-4 flex items-center justify-between">
+                <div className="text-gray flex items-center">
+                    <img src="/images/logo.png" alt="logo" loading="lazy" className="w-[30px] h-[30px]" />
+                    <span className="ml-1 text-white">marcos</span>
+                </div>
+
+                <div>
+                    <a href="/sign-in" className="rounded-full p-2 text-sm 
+                    bg-gradient-to-r from-blue-500 to-teal-700 text-white">
+                        Join Now
+                    </a>
+                </div>
+            </div>
         </nav>
     )
 }

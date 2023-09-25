@@ -86,7 +86,81 @@ const getPasswords = async (req, res) => {
   }
 };
 
+const deletePassword = async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    await Password.findByIdAndDelete(id)
+      .then(() => {
+        res.status(200).json({
+          success: true,
+          message: "Password deleted successfully"
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(401).json({
+          success: false,
+          message: "Password could not be deleted"
+        })
+      })
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error"
+    })
+  }
+}
+
+const updatePassword = async (req, res) => {
+  const { id } = req.body;
+  const data = {};
+
+  if (req.body.title) {
+    data.title = req.body.title;
+  }
+
+  if (req.body.platform) {
+    data.platform = req.body.platform;
+  }
+
+  if (req.body.email) {
+    data.email = req.body.email;
+  }
+
+  if (req.body.password) {
+    data.password = req.body.password;
+  }
+
+  if (req.body.optional) {
+    data.optional = req.body.optional;
+  }
+
+  try {
+    const existed = await Password.findById(id);
+
+    if (existed) {
+      const updatedPassword = await Password.findByIdAndUpdate(id, data, { new: true });
+
+      return res.status(200).json({
+        success : true,
+        message : "Updated Successfully"
+      })
+    }
+
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error"
+    })
+  }
+}
+
 module.exports = {
   createPassword,
   getPasswords,
+  deletePassword,
+  updatePassword
 };

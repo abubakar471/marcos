@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
                 <div className="w-1/4">
                     <Sidebar active={active} setActive={setActive} />
                 </div>
-                <div className="w-3/4">
+                <div className="w-3/4 overflow-hidden">
                     <DashboardContent active={active} />
                 </div>
             </div>
