@@ -46,7 +46,7 @@ const Home = () => {
             <Navbar />
 
             <header style={{
-                background: `#00405E url("/images/hero1.jpg")`,
+                background: `#00405E url("/images/hero.jpg")`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -78,7 +78,7 @@ const Home = () => {
                                 type="email"
                                 placeholder="Enter email to subscribe to newsletter"
                                 className="p-2 outline-none border-none indent-1 w-full
-                            placeholder:text-gray-600 placeholder:text-[12px] rounded-full" />
+                            placeholder:text-gray-600 placeholder:text-[14px] rounded-full" />
                             <BsFillSendFill size={20} className="text-blue-600 
                             absolute top-1/2 transform -translate-y-1/2 right-3" />
                         </form>
