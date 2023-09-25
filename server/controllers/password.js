@@ -144,8 +144,8 @@ const updatePassword = async (req, res) => {
       const updatedPassword = await Password.findByIdAndUpdate(id, data, { new: true });
 
       return res.status(200).json({
-        success : true,
-        message : "Updated Successfully"
+        success: true,
+        message: "Updated Successfully"
       })
     }
 
@@ -158,9 +158,68 @@ const updatePassword = async (req, res) => {
   }
 }
 
+const getSearchResults = async (req, res) => {
+  const { searchQuery, userId } = req.params;
+
+  if (!searchQuery || !userId) {
+    return;
+  }
+
+  try {
+    const result = await Password.find({
+      userId: userId,
+      $and: [
+        {
+          $or: [
+            {
+              title: { $regex: searchQuery, $options: 'i' }
+            },
+            {
+              email: { $regex: searchQuery, $options: 'i' }
+            },
+            {
+              platform: { $regex: searchQuery, $options: 'i' }
+            }
+          ]
+        }
+      ]
+    });
+
+    res.status(200).json({
+      success: true,
+      passwords: result
+    })
+  } catch (error) {
+    console.log("error while searching for passwords in getSearchResults", error);
+    return res.status(500).json({
+      success : false,
+      message : "Internal Server Error"
+    })
+  }
+
+  // const fetcher = async(param) => {
+  //   const result = await Password.find({
+  //     $or: [
+  //       { param: { $regex: searchQuery, $options: 'i' } }
+  //   ]
+  //   });
+
+  //   return result;
+  // }
+
+
+
+  // const fetchByTitle = fetcher(title);
+
+  // if(!fetchByTitle) {
+  //   const fetchByPlatform = fetcher(platform);
+  // }
+}
+
 module.exports = {
   createPassword,
   getPasswords,
   deletePassword,
-  updatePassword
+  updatePassword,
+  getSearchResults
 };

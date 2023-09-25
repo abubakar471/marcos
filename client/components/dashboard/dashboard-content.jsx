@@ -10,7 +10,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { MdDeleteForever } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import { Backdrop, Button, CircularProgress } from "@mui/material";
+import { Backdrop, Button, CircularProgress, TextField } from "@mui/material";
 import EditPasswordModal from "../modal/edit-password-modal";
 
 const DashboardContent = ({ active }) => {
@@ -27,6 +27,7 @@ const DashboardContent = ({ active }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [optional, setOptional] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const { userId } = useAuth();
   const [passwords, setPasswords] = useState([]);
 
@@ -82,12 +83,12 @@ const DashboardContent = ({ active }) => {
   };
 
   const fetchPasswords = async () => {
-    try{
+    try {
       const { data } = await axios.post("/get-passwords", {
         userId,
       });
       setPasswords(data.passwords);
-    } catch(err){
+    } catch (err) {
       console.log("error in fetching passwords", err);
     }
   };
@@ -155,10 +156,32 @@ const DashboardContent = ({ active }) => {
     }
   }
 
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setOpenBackdrop(true);
+
+    try {
+      const { data } = await axios.post(`/search/${searchQuery}/${userId}`);
+
+      if (data.success) {
+        setPasswords(data.passwords);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setOpenBackdrop(false);
+    }
+  }
+
   useEffect(() => {
     fetchPasswords();
   }, []);
 
+  useEffect(() => {
+    if (searchQuery.length === 0) {
+      fetchPasswords();
+    }
+  }, [searchQuery])
 
 
   const rows = [];
@@ -193,7 +216,13 @@ const DashboardContent = ({ active }) => {
           {/* all passwords */}
           <div className="my-2">
             {/* search and filter box */}
-            <div></div>
+            <form onSubmit={handleSearch} className="my-2 flex items-center w-full">
+              <TextField
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                id="standard-basic" label="search" variant="standard" className="grow" />
+              <Button type="submit" variant="outlined" color="primary" className="px-2">Search</Button>
+            </form>
 
             {/* list of all passwords in data grids */}
             {passwords.length > 0 ? (
