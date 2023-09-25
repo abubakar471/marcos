@@ -131,7 +131,7 @@ const Home = () => {
             {/* developer */}
             <section>
                 <div className="w-[90%] md:w-[80%] lg:w-[80%] xl:w-[80%] mx-auto py-12">
-                    <h1 className="text-3xl">Developer <span className="text-gray-500">-ab devs</span></h1>
+                    <h1 className="text-3xl">Developer <span className="text-green-600">-ab devs</span></h1>
 
                     <div className="flex flex-wrap md:flex-nowrap lg:flex-nowrap xl:flex-nowrap justify-between mt-12">
                         <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
