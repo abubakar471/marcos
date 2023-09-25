@@ -46,7 +46,7 @@ const Home = () => {
             <Navbar />
 
             <header style={{
-                background: `url("/images/hero1.jpg") rgba(0,0,0,0.6)`,
+                background: `#00405E url("/images/hero1.jpg")`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -78,7 +78,7 @@ const Home = () => {
                                 type="email"
                                 placeholder="Enter email to subscribe to newsletter"
                                 className="p-2 outline-none border-none indent-1 w-full
-                            placeholder:text-gray-600 rounded-full" />
+                            placeholder:text-gray-600 placeholder:text-[12px] rounded-full" />
                             <BsFillSendFill size={20} className="text-blue-600 
                             absolute top-1/2 transform -translate-y-1/2 right-3" />
                         </form>
@@ -144,7 +144,7 @@ const Home = () => {
                                  <h2 className="text-xl">Founder & CEO - Marcos</h2>
                                  <h3 className="text-lg">Website : <a href="https://ab-devs.vercel.app/" target="_blank" rel="noopener noreferrer">https://ab-devs.vercel.app/</a> </h3>
                                  <h3 className="text-lg">E-mail : <a href="mailto:abubakar.devs@gmail.com">abubakar.devs@gmail.com</a> </h3>
-                                 <h3 className="text-lg">LinkedIn : <a href="https://www.linkedin.com/in/abubakar471/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/abubakar471/</a></h3>
+                                 <h3 className="text-lg break-words">LinkedIn : <a href="https://www.linkedin.com/in/abubakar471/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/abubakar471/</a></h3>
                             </div>
                         </div>
                     </div>
