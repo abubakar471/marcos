@@ -1,5 +1,6 @@
 "use client"
 
+import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import { SignIn } from "@clerk/nextjs";
 import axios from "axios";
@@ -50,7 +51,7 @@ const Home = () => {
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundAttachment: "fixed",
-                backgroundBlendMode : "darken"
+                backgroundBlendMode: "darken"
             }} className="w-full min-h-screen max-h-[100%] before:bg-[#00405E]">
 
                 <div className="w-[90%] md:w-[80%] lg:w-[80%] xl:w-[80%] mx-auto pt-8 flex justify-end">
@@ -98,30 +99,59 @@ const Home = () => {
             </header>
 
             {/* about us */}
-            {/* <section>
-                <div className="w-1/2">
-                    image
-                </div>
-                <div className="w-1/2">
-                    <h1>About Us</h1>
-                    <div>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Rem eius reiciendis libero expedita deleniti quas blanditiis
-                            voluptate tempora labore, illum voluptatum pariatur veritatis
-                            odit unde officiis. Libero numquam veritatis quod?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Rem eius reiciendis libero expedita deleniti quas blanditiis
-                            voluptate tempora labore, illum voluptatum pariatur veritatis
-                            odit unde officiis. Libero numquam veritatis quod?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Rem eius reiciendis libero expedita deleniti quas blanditiis
-                            voluptate tempora labore, illum voluptatum pariatur veritatis
-                            odit unde officiis. Libero numquam veritatis quod?
-                        </p>
+            <section className="my-8">
+                <div className="w-[90%] md:w-[80%] lg:w-[80%] xl:w-[80%] mx-auto">
+                    <div className="flex items-center justify-center mb-4">
+                        <h1 className="text-black text-3xl">
+                            About <span className="border-b border-gray-500 text-gray-600">Us</span>
+                        </h1>
+                    </div>
+                    <div className="flex flex-wrap md:flex-nowrap lg:flex-nowrap xl:flex-nowrap
+                     items-center justify-center md:justify-between lg: xl:justify-between">
+                        <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 mx-auto md:mx-0 lg:mx-0 xl:mx-0">
+                            <img src="/images/logo4.png" alt="" className="w-[400px] h-[380px]" />
+                        </div>
+                        <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 mx-auto md:mx-0 lg:mx-0 xl:mx-0">
+                            <div>
+                                <p>
+                                    Welcome to Marcos, where your digital security is our top priority.
+                                    We employ advanced hashed algorithms to safeguard your passwords,
+                                    making them impenetrable even to us. Our multi-factor authentication
+                                    (MFA) adds an extra layer of protection, ensuring your data remains
+                                    safe from intentional breaches. Your privacy and security are our
+                                    utmost concern. Choose Marcos and take control of your online
+                                    protection today.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section> */}
+            </section>
+
+            {/* developer */}
+            <section>
+                <div className="w-[90%] md:w-[80%] lg:w-[80%] xl:w-[80%] mx-auto py-12">
+                    <h1 className="text-3xl">Developer <span className="text-gray-500">-ab devs</span></h1>
+
+                    <div className="flex flex-wrap md:flex-nowrap lg:flex-nowrap xl:flex-nowrap justify-between mt-12">
+                        <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
+                            <img src="/images/developer.jpg" className="w-full h-[300px] rounded-md" />
+                        </div>
+
+                        <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
+                            <div className="px-4 flex flex-col gap-y-2">
+                                 <h1 className="text-2xl">Muhammad Abu Bakar Siddique</h1>   
+                                 <h2 className="text-xl">Founder & CEO - Marcos</h2>
+                                 <h3 className="text-lg">Website : <a href="https://ab-devs.vercel.app/" target="_blank" rel="noopener noreferrer">https://ab-devs.vercel.app/</a> </h3>
+                                 <h3 className="text-lg">E-mail : <a href="mailto:abubakar.devs@gmail.com">abubakar.devs@gmail.com</a> </h3>
+                                 <h3 className="text-lg">LinkedIn : <a href="https://www.linkedin.com/in/abubakar471/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/abubakar471/</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <Footer />
         </div>
     )
 }
