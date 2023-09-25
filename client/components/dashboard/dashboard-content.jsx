@@ -13,6 +13,7 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import { Backdrop, Button, CircularProgress, TextField } from "@mui/material";
 import EditPasswordModal from "../modal/edit-password-modal";
 import ShowModal from "../modal/show-modal";
+import DashboardHelp from "./dashboard-help";
 
 const DashboardContent = ({ active }) => {
   const [error, setError] = useState(null);
@@ -33,7 +34,7 @@ const DashboardContent = ({ active }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { userId } = useAuth();
   const [passwords, setPasswords] = useState([]);
-  const [noResultMessage, setNoResultMessage]= useState("");
+  const [noResultMessage, setNoResultMessage] = useState("");
 
   //   axios config
   axios.defaults.baseURL = process.env.NEXT_PUBLIC_API;
@@ -93,12 +94,15 @@ const DashboardContent = ({ active }) => {
         userId,
       });
 
-      if(data.passwords.length === 0) {
+      if (data.passwords.length === 0) {
         setNoResultMessage("No password has been added");
       }
       setPasswords(data.passwords);
     } catch (err) {
       console.log("error in fetching passwords", err);
+      if (err?.name === "AxiosError") {
+        setNoResultMessage("Service Currently Off! Please try again later.");
+      }
     } finally {
       setFetchLoading(false);
     }
@@ -215,9 +219,9 @@ const DashboardContent = ({ active }) => {
 
     try {
       const { data } = await axios.post(`/search/${searchQuery}/${userId}`);
-      
+
       if (data.success) {
-        if(data.passwords.length === 0) {
+        if (data.passwords.length === 0) {
           setNoResultMessage("Nothing matched your query");
         }
         setPasswords(data.passwords);
@@ -361,6 +365,10 @@ const DashboardContent = ({ active }) => {
 
           </div>
         </div>
+      )}
+
+      {active === 4 && (
+        <DashboardHelp />
       )}
 
       <Modal open={open} onClose={handleClose}>
