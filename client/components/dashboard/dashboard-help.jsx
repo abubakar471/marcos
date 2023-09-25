@@ -2,7 +2,7 @@ import { TbHelpHexagonFilled } from "react-icons/tb"
 
 const DashboardHelp = () => {
     return (
-        <div className="p-4 max-h-[90vh] overflow-y-auto">
+        <div className="p-4 max-h-[90vh]">
             <div className="flex items-center mb-4">
                 <TbHelpHexagonFilled size={30} />
                 <h1 className="text-3xl ml-2">Help</h1>
