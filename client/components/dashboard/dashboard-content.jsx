@@ -23,6 +23,7 @@ const DashboardContent = ({ active }) => {
   const [showModalOpen, setShowModalOpen] = useState(null);
   const handleClose = () => setOpen(false);
   const [loading, setLoading] = useState(false);
+  const [fetchLoading, setFetchLoading] = useState(false);
   const [id, setId] = useState("");
   const [title, setTitle] = useState("");
   const [platform, setPlatform] = useState("");
@@ -32,6 +33,7 @@ const DashboardContent = ({ active }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { userId } = useAuth();
   const [passwords, setPasswords] = useState([]);
+  const [noResultMessage, setNoResultMessage]= useState("");
 
   //   axios config
   axios.defaults.baseURL = process.env.NEXT_PUBLIC_API;
@@ -85,13 +87,20 @@ const DashboardContent = ({ active }) => {
   };
 
   const fetchPasswords = async () => {
+    setFetchLoading(true);
     try {
       const { data } = await axios.post("/get-passwords", {
         userId,
       });
+
+      if(data.passwords.length === 0) {
+        setNoResultMessage("No password has been added");
+      }
       setPasswords(data.passwords);
     } catch (err) {
       console.log("error in fetching passwords", err);
+    } finally {
+      setFetchLoading(false);
     }
   };
 
@@ -206,8 +215,11 @@ const DashboardContent = ({ active }) => {
 
     try {
       const { data } = await axios.post(`/search/${searchQuery}/${userId}`);
-
+      
       if (data.success) {
+        if(data.passwords.length === 0) {
+          setNoResultMessage("Nothing matched your query");
+        }
         setPasswords(data.passwords);
       }
     } catch (err) {
@@ -279,66 +291,74 @@ const DashboardContent = ({ active }) => {
             </form>
 
             {/* list of all passwords in data grids */}
-            {passwords.length > 0 ? (
-              <div>
-                <DataGrid
-                  columns={[
-                    { field: "id", headerName: "ID" },
-                    { field: "title", headerName: "Title" },
-                    { field: "platform", headerName: "Platform" },
-                    { field: "email", headerName: "E-mail or Username" },
-                    { field: "password", headerName: "Password" },
-                    { field: "optional", headerName: "Optional" },
-                    {
-                      field: "edit",
-                      minWidth: 150,
-                      headerName: "Edit",
-                      sortable: false,
-                      renderCell: (params) => {
-                        return (
-                          <>
-                            <Button onClick={() => {
-                              setOpenEditModal(true);
-                              setId(params.row.id);
-                              setTitle(params.row.title);
-                              setPlatform(params.row.platform);
-                              setEmail(params.row.email);
-                              setPassword(params.row.password);
-                              setOptional(params.row.optional);
-                            }}>
-                              {/* <DriveFileRenameOutlineIcon fontSize="20" color="primary" /> */}
-                              <BiEdit size={20} />
-                            </Button>
-                          </>
-                        );
-                      },
-                    },
-                    {
-                      field: "delete",
-                      minWidth: 150,
-                      headerName: "Delete",
-                      sortable: false,
-                      renderCell: (params) => {
-                        return (
-                          <>
-                            <Button onClick={() => handleDelete(params.id)}>
-                              <MdDeleteForever size={20} />
-                            </Button>
-                          </>
-                        );
-                      },
-                    }
-                  ]}
-                  rows={rows}
-                  autoHeight
-                  onRowDoubleClick={handleEvent}
-                />
+            {fetchLoading ? (
+              <div className="w-full flex items-center justify-center">
+                <CircularProgress color="primary" />
               </div>
             ) : (
-              <div>
-                <h1>No password has been added</h1>
-              </div>
-            )}
+              passwords.length > 0 ? (
+                <div>
+                  <DataGrid
+                    columns={[
+                      { field: "id", headerName: "ID" },
+                      { field: "title", headerName: "Title" },
+                      { field: "platform", headerName: "Platform" },
+                      { field: "email", headerName: "E-mail or Username" },
+                      { field: "password", headerName: "Password" },
+                      { field: "optional", headerName: "Optional" },
+                      {
+                        field: "edit",
+                        minWidth: 150,
+                        headerName: "Edit",
+                        sortable: false,
+                        renderCell: (params) => {
+                          return (
+                            <>
+                              <Button onClick={() => {
+                                setOpenEditModal(true);
+                                setId(params.row.id);
+                                setTitle(params.row.title);
+                                setPlatform(params.row.platform);
+                                setEmail(params.row.email);
+                                setPassword(params.row.password);
+                                setOptional(params.row.optional);
+                              }}>
+                                {/* <DriveFileRenameOutlineIcon fontSize="20" color="primary" /> */}
+                                <BiEdit size={20} />
+                              </Button>
+                            </>
+                          );
+                        },
+                      },
+                      {
+                        field: "delete",
+                        minWidth: 150,
+                        headerName: "Delete",
+                        sortable: false,
+                        renderCell: (params) => {
+                          return (
+                            <>
+                              <Button onClick={() => handleDelete(params.id)}>
+                                <MdDeleteForever size={20} />
+                              </Button>
+                            </>
+                          );
+                        },
+                      }
+                    ]}
+                    rows={rows}
+                    autoHeight
+                    onRowDoubleClick={handleEvent}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <h1>{noResultMessage}</h1>
+                </div>
+              )
+            )
+            }
+
           </div>
         </div>
       )}
