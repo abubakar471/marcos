@@ -27,7 +27,7 @@ const CreatePasswordModal = ({ open, setOpen,
                     <TextField type="text" id="title" label="Title" variant="standard" value={title} onChange={e => setTitle(e.target.value)} />
                     <TextField type="text" id="platform" label="Platform Name" variant="standard" value={platform} onChange={e => setPlatform(e.target.value)} />
                     <TextField type="text" id="standard-basic" label="E-mail or Username" variant="standard" value={email} onChange={e => setEmail(e.target.value)} />
-                    <TextField type="password" id="standard-basic" label="Password" variant="standard" value={password} onChange={e => setPassword(e.target.value)} />
+                    <TextField type="text" id="standard-basic" label="Password" variant="standard" value={password} onChange={e => setPassword(e.target.value)} />
                     <TextField type="text" id="standard-basic" label="[optional] Backup codes , security code or others" variant="standard" value={optional} onChange={e => setOptional(e.target.value)} />
                     <button disabled={loading ? true : false} className="p-2 my-2 bg-blue-700 text-white shadow-sm rounded w-full">
                         {loading ? "please wait..." : "Add to marcos"}
