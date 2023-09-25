@@ -13,7 +13,7 @@ const AuthNavbar = () => {
                    <span className="ml-1">marcos</span>
                 </div>
 
-                <UserButton afterSignOutUrl="/sign-in" />
+                <UserButton afterSignOutUrl="/" />
             </div>
         </nav>
     )
