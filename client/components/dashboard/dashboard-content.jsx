@@ -12,6 +12,7 @@ import { BiEdit } from "react-icons/bi";
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import { Backdrop, Button, CircularProgress, TextField } from "@mui/material";
 import EditPasswordModal from "../modal/edit-password-modal";
+import ShowModal from "../modal/show-modal";
 
 const DashboardContent = ({ active }) => {
   const [error, setError] = useState(null);
@@ -19,6 +20,7 @@ const DashboardContent = ({ active }) => {
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [editModalData, setEditModalData] = useState(null);
+  const [showModalOpen, setShowModalOpen] = useState(null);
   const handleClose = () => setOpen(false);
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState("");
@@ -156,6 +158,48 @@ const DashboardContent = ({ active }) => {
     }
   }
 
+  const handleShowEditSubmit = async (e) => {
+    e.preventDefault();
+    setOpenEditModal(false);
+    try {
+      setLoading(true);
+
+      setOpenBackdrop(true);
+
+      const { data } = await axios.post(`/update-password`, {
+        id,
+        title,
+        platform,
+        email,
+        password,
+        optional,
+      });
+
+      if (data.success) {
+        fetchPasswords();
+        alert(data.message);
+      }
+
+      setError(null);
+      setId("");
+      setTitle("");
+      setPlatform("");
+      setEmail("");
+      setPassword("");
+      setOptional("");
+      setShowModalOpen(false);
+    } catch (err) {
+      if (err?.response?.status === 401) {
+        setError(err.response.data.message);
+      }
+      console.log(err);
+      setShowModalOpen(true);
+    } finally {
+      setLoading(false);
+      setOpenBackdrop(false);
+    }
+  }
+
   const handleSearch = async (e) => {
     e.preventDefault();
     setOpenBackdrop(true);
@@ -171,6 +215,16 @@ const DashboardContent = ({ active }) => {
     } finally {
       setOpenBackdrop(false);
     }
+  }
+
+  const handleEvent = (params) => {
+    setShowModalOpen(true);
+    setId(params.row.id);
+    setTitle(params.row.title);
+    setPlatform(params.row.platform);
+    setEmail(params.row.email);
+    setPassword(params.row.password);
+    setOptional(params.row.optional);
   }
 
   useEffect(() => {
@@ -277,6 +331,7 @@ const DashboardContent = ({ active }) => {
                   ]}
                   rows={rows}
                   autoHeight
+                  onRowDoubleClick={handleEvent}
                 />
               </div>
             ) : (
@@ -325,6 +380,38 @@ const DashboardContent = ({ active }) => {
           editModalData={editModalData}
           setEditModalData={setEditModalData}
           handleEditSubmit={handleEditSubmit}
+          loading={loading}
+          error={error}
+        />
+      </Modal>
+
+      <Modal open={showModalOpen} onClose={() => {
+        setError(null);
+        setId("");
+        setTitle("");
+        setPlatform("");
+        setEmail("");
+        setPassword("");
+        setOptional("");
+        setShowModalOpen(false);
+      }
+      }>
+        <ShowModal
+          open={showModalOpen}
+          setOpen={setShowModalOpen}
+          title={title}
+          setTitle={setTitle}
+          platform={platform}
+          setPlatform={setPlatform}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          optional={optional}
+          setOptional={setOptional}
+          editModalData={editModalData}
+          setEditModalData={setEditModalData}
+          handleEditSubmit={handleShowEditSubmit}
           loading={loading}
           error={error}
         />
