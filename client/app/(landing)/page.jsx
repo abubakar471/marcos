@@ -45,11 +45,12 @@ const Home = () => {
             <Navbar />
 
             <header style={{
-                backgroundImage: `url("/images/hero1.jpg")`,
+                background: `url("/images/hero1.jpg") rgba(0,0,0,0.6)`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundAttachment: "fixed",
+                backgroundBlendMode : "darken"
             }} className="w-full min-h-screen max-h-[100%]">
 
                 <div className="w-[90%] md:w-[80%] lg:w-[80%] xl:w-[80%] mx-auto pt-8 flex justify-end">
