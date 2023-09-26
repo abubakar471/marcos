@@ -66,17 +66,18 @@ const DashboardContent = ({ active }) => {
         //   optional: data.newPassword.optional
         // })
         fetchPasswords();
+        console.log(data);
+
+        setError(null);
+        setTitle("");
+        setPlatform("");
+        setEmail("");
+        setPassword("");
+        setOptional("");
+        setOpen(false);
       }
 
-      console.log(data);
 
-      setError(null);
-      setTitle("");
-      setPlatform("");
-      setEmail("");
-      setPassword("");
-      setOptional("");
-      setOpen(false);
     } catch (err) {
       if (err?.response?.status === 401) {
         setError(err.response.data.message);
@@ -391,7 +392,16 @@ const DashboardContent = ({ active }) => {
         />
       </Modal>
 
-      <Modal open={openEditModal} onClose={() => setOpenEditModal(false)}>
+      <Modal open={openEditModal} onClose={() => {
+        setError(null);
+        setId("");
+        setTitle("");
+        setPlatform("");
+        setEmail("");
+        setPassword("");
+        setOptional("");
+        setOpenEditModal(false);
+      }}>
         <EditPasswordModal
           open={openEditModal}
           setOpen={setOpenEditModal}

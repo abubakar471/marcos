@@ -6,25 +6,25 @@ const initVector = crypto.randomBytes(16);
 // secret key generate 32 bytes of random data
 const securityKey = crypto.randomBytes(32);
 
-const encryptPassword = (password) => {
+const encryptCredentials = (parameter) => {
   // cipher function to intiate cryptography
-  const cipher = crypto.createCipher(algorithm, securityKey);
+  const cipher = crypto.createCipher(algorithm, securityKey, initVector);
 
   // encrypt the message
   // input encoding
   // output encoding
-  let encryptedData = cipher.update(password, "utf8", "hex");
+  let encryptedData = cipher.update(parameter, "utf8", "hex");
   encryptedData += cipher.final("hex");
 
   return encryptedData;
 }
 
-const decryptPassword = (password) => {
+const decryptCredentials = (parameter) => {
   // the decipher function
-  const decipher = crypto.createDecipher(algorithm, securityKey);
-  let decryptedData = decipher.update(password, "hex", "utf8");
+  const decipher = crypto.createDecipher(algorithm, securityKey, initVector);
+  let decryptedData = decipher.update(parameter, "hex", "utf8");
+  
   decryptedData += decipher.final("utf8");
-
   return decryptedData;
 }
 
@@ -60,13 +60,14 @@ const createPassword = async (req, res) => {
       });
     }
 
-    const hashedPassword = encryptPassword(password);
+    const hashedEmail = encryptCredentials(email);
+    const hashedPassword = encryptCredentials(password);
 
     const newPassword = await Password.create({
       userId,
       title,
       platform,
-      email,
+      email : hashedEmail,
       password: hashedPassword,
       optional,
     });
@@ -102,7 +103,10 @@ const getPasswords = async (req, res) => {
     const passwords = await Password.find({ userId }).select("-userId");
 
     passwords.map(item => {
-      const decryptedPassword = decryptPassword(item.password);
+      const decryptedEmail = decryptCredentials(item.email);
+      const decryptedPassword = decryptCredentials(item.password);
+      
+      item.email = decryptedEmail;
       item.password = decryptedPassword;
 
       return item;
