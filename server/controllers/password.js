@@ -4,7 +4,7 @@ const algorithm = "aes-256-cbc";
 // generate 16 bytes of random data
 const initVector = crypto.randomBytes(16);
 // secret key generate 32 bytes of random data
-const securityKey = crypto.randomBytes(32);
+const securityKey = process.env.CRYPTO_SECRET;
 
 const encryptCredentials = (parameter) => {
   // cipher function to intiate cryptography
