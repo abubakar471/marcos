@@ -1,4 +1,32 @@
 const Password = require("../models/password");
+const crypto = require("crypto");
+const algorithm = "aes-256-cbc";
+// generate 16 bytes of random data
+const initVector = crypto.randomBytes(16);
+// secret key generate 32 bytes of random data
+const securityKey = crypto.randomBytes(32);
+
+const encryptPassword = (password) => {
+  // cipher function to intiate cryptography
+  const cipher = crypto.createCipher(algorithm, securityKey);
+
+  // encrypt the message
+  // input encoding
+  // output encoding
+  let encryptedData = cipher.update(password, "utf8", "hex");
+  encryptedData += cipher.final("hex");
+
+  return encryptedData;
+}
+
+const decryptPassword = (password) => {
+  // the decipher function
+  const decipher = crypto.createDecipher(algorithm, securityKey);
+  let decryptedData = decipher.update(password, "hex", "utf8");
+  decryptedData += decipher.final("utf8");
+
+  return decryptedData;
+}
 
 const createPassword = async (req, res) => {
   const { userId, title, platform, email, password, optional } = req.body;
@@ -32,12 +60,14 @@ const createPassword = async (req, res) => {
       });
     }
 
+    const hashedPassword = encryptPassword(password);
+
     const newPassword = await Password.create({
       userId,
       title,
       platform,
       email,
-      password,
+      password: hashedPassword,
       optional,
     });
 
@@ -70,6 +100,14 @@ const getPasswords = async (req, res) => {
     }
 
     const passwords = await Password.find({ userId }).select("-userId");
+
+    passwords.map(item => {
+      const decryptedPassword = decryptPassword(item.password);
+      item.password = decryptedPassword;
+
+      return item;
+    })
+
     res.status(200).json({
       passwords,
     });
@@ -192,8 +230,8 @@ const getSearchResults = async (req, res) => {
   } catch (error) {
     console.log("error while searching for passwords in getSearchResults", error);
     return res.status(500).json({
-      success : false,
-      message : "Internal Server Error"
+      success: false,
+      message: "Internal Server Error"
     })
   }
 
