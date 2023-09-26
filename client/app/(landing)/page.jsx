@@ -128,6 +128,13 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* encryption process */}
+
+            <div className="w-[90%] md:w-[80%] lg:w-[80%] xl:w-[80%] mx-auto flex flex-col items-center justify-center">
+               <h1 className="text-3xl">How We Work</h1>
+                <img src="/images/encryption.jpg" alt="" className="w-full" />
+            </div>
+
             {/* developer */}
             <section>
                 <div className="w-[90%] md:w-[80%] lg:w-[80%] xl:w-[80%] mx-auto py-12">
@@ -140,11 +147,11 @@ const Home = () => {
 
                         <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
                             <div className="px-4 flex flex-col gap-y-2">
-                                 <h1 className="text-2xl">Muhammad Abu Bakar Siddique</h1>   
-                                 <h2 className="text-xl">Founder & CEO - Marcos</h2>
-                                 <h3 className="text-lg">Website : <a href="https://ab-devs.vercel.app/" target="_blank" rel="noopener noreferrer">https://ab-devs.vercel.app/</a> </h3>
-                                 <h3 className="text-lg">E-mail : <a href="mailto:abubakar.devs@gmail.com">abubakar.devs@gmail.com</a> </h3>
-                                 <h3 className="text-lg break-words">LinkedIn : <a href="https://www.linkedin.com/in/abubakar471/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/abubakar471/</a></h3>
+                                <h1 className="text-2xl">Muhammad Abu Bakar Siddique</h1>
+                                <h2 className="text-xl">Founder & CEO - Marcos</h2>
+                                <h3 className="text-lg">Website : <a href="https://ab-devs.vercel.app/" target="_blank" rel="noopener noreferrer">https://ab-devs.vercel.app/</a> </h3>
+                                <h3 className="text-lg">E-mail : <a href="mailto:abubakar.devs@gmail.com">abubakar.devs@gmail.com</a> </h3>
+                                <h3 className="text-lg break-words">LinkedIn : <a href="https://www.linkedin.com/in/abubakar471/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/abubakar471/</a></h3>
                             </div>
                         </div>
                     </div>
