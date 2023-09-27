@@ -130,6 +130,7 @@ const DashboardContent = ({ active }) => {
           setOptional("");
           setSearchQuery("");
           setOpen(false);
+          setOpenEditModal(false);
           fetchPasswords();
         }
       } catch (err) {
