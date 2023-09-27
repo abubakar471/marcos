@@ -3,7 +3,7 @@ const crypto = require("crypto");
 const algorithm = "aes-256-cbc";
 // generate 16 bytes of random data
 // const initVector = crypto.randomBytes(16);
-const initVector = Buffer.from("modernDaymorni9ngCla$h", "hex");
+const initVector = "modernDaymorni9ngCla$h";
 // secret key generate 32 bytes of random data
 const securityKey = process.env.CRYPTO_SECRET;
 
