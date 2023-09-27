@@ -13,14 +13,13 @@ const ShowModal = ({ open, setOpen,
                     size={30}
                     className="absolute right-3 top-3 z-50 cursor-pointer"
                     onClick={() => {
-                        setOpen(false);
-                        setError(null);
                         setId("");
                         setTitle("");
                         setPlatform("");
                         setEmail("");
                         setPassword("");
                         setOptional("");
+                        setOpen(false);
                     }}
                 />
 
