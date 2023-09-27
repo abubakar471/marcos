@@ -8,6 +8,7 @@ import axios from "axios";
 import { useAuth } from "@clerk/nextjs";
 import { DataGrid } from "@mui/x-data-grid";
 import { MdDeleteForever } from "react-icons/md";
+import { AiFillEye } from "react-icons/ai"
 import { BiEdit } from "react-icons/bi";
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import { Backdrop, Button, CircularProgress, TextField } from "@mui/material";
@@ -347,6 +348,29 @@ const DashboardContent = ({ active }) => {
                             <>
                               <Button onClick={() => handleDelete(params.id)}>
                                 <MdDeleteForever size={20} />
+                              </Button>
+                            </>
+                          );
+                        },
+                      },
+                      {
+                        field: "show",
+                        minWidth: 120,
+                        headerName: " ",
+                        sortable: false,
+                        renderCell: (params) => {
+                          return (
+                            <>
+                              <Button onClick={() => {
+                                setOpenEditModal(true);
+                                setId(params.row.id);
+                                setTitle(params.row.title);
+                                setPlatform(params.row.platform);
+                                setEmail(params.row.email);
+                                setPassword(params.row.password);
+                                setOptional(params.row.optional);
+                              }}>
+                                <AiFillEye size={20} />
                               </Button>
                             </>
                           );
