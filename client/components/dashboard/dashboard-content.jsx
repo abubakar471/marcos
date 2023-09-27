@@ -316,6 +316,7 @@ const DashboardContent = ({ active }) => {
               passwords.length > 0 ? (
                 <div>
                   <DataGrid
+                    rowCount={25}
                     columns={[
                       { field: "id", headerName: "ID" },
                       { field: "title", headerName: "Title" },
