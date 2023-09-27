@@ -316,7 +316,6 @@ const DashboardContent = ({ active }) => {
                       { field: "optional", headerName: "Optional" },
                       {
                         field: "edit",
-                        minWidth: 120,
                         headerName: "Edit",
                         sortable: false,
                         renderCell: (params) => {
@@ -340,7 +339,6 @@ const DashboardContent = ({ active }) => {
                       },
                       {
                         field: "delete",
-                        minWidth: 120,
                         headerName: "Delete",
                         sortable: false,
                         renderCell: (params) => {
