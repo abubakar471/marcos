@@ -24,7 +24,7 @@ const decryptCredentials = (parameter) => {
   // the decipher function
   const decipher = crypto.createDecipher(algorithm, securityKey, initVector);
   let decryptedData = decipher.update(parameter, "hex", "utf8");
-  
+
   decryptedData += decipher.final("utf8");
   return decryptedData;
 }
@@ -68,7 +68,7 @@ const createPassword = async (req, res) => {
       userId,
       title,
       platform,
-      email : hashedEmail,
+      email: hashedEmail,
       password: hashedPassword,
       optional,
     });
@@ -106,7 +106,7 @@ const getPasswords = async (req, res) => {
     passwords.map(item => {
       const decryptedEmail = decryptCredentials(item.email);
       const decryptedPassword = decryptCredentials(item.password);
-      
+
       item.email = decryptedEmail;
       item.password = decryptedPassword;
 
@@ -209,7 +209,7 @@ const getSearchResults = async (req, res) => {
   if (!searchQuery || !userId) {
     return;
   }
-  
+
   const encryptedEmail = encryptCredentials(searchQuery);
 
   try {
@@ -231,6 +231,16 @@ const getSearchResults = async (req, res) => {
         }
       ]
     });
+
+    result.map(item => {
+      const decryptedEmail = decryptCredentials(item.email);
+      const decryptedPassword = decryptCredentials(item.password);
+
+      item.email = decryptedEmail;
+      item.password = decryptedPassword;
+
+      return item;
+    })
 
     res.status(200).json({
       success: true,
