@@ -123,6 +123,8 @@ const DashboardContent = ({ active }) => {
         });
 
         if (data.success) {
+          setOpen(false);
+          setOpenEditModal(false);
           fetchPasswords();
         }
       } catch (err) {
