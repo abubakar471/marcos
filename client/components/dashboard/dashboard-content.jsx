@@ -75,6 +75,7 @@ const DashboardContent = ({ active }) => {
         setEmail("");
         setPassword("");
         setOptional("");
+        setSearchQuery("");
         setOpen(false);
       }
 
