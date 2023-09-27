@@ -451,9 +451,6 @@ const DashboardContent = ({ active }) => {
           handleEditSubmit={handleEditSubmit}
           loading={loading}
           error={error}
-          handleDelete={handleDelete}
-          id={id}
-          setId={setId}
         />
       </Modal>
 
