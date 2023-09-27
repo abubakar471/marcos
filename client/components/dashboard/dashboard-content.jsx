@@ -316,6 +316,7 @@ const DashboardContent = ({ active }) => {
               passwords.length > 0 ? (
                 <div>
                   <DataGrid
+                    pagination
                     autoPageSize
                     columns={[
                       { field: "id", headerName: "ID" },
