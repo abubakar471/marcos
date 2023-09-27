@@ -353,8 +353,7 @@ const DashboardContent = ({ active }) => {
                       },
                       {
                         field: "show",
-                        minWidth: 120,
-                        headerName: " ",
+                        headerName: "Show",
                         sortable: false,
                         renderCell: (params) => {
                           return (
