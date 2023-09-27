@@ -329,7 +329,7 @@ const DashboardContent = ({ active }) => {
                                 setEmail(params.row.email);
                                 setPassword(params.row.password);
                                 setOptional(params.row.optional);
-                              }}>
+                              }} className="flex items-center justify-start">
                                 {/* <DriveFileRenameOutlineIcon fontSize="20" color="primary" /> */}
                                 <BiEdit size={20} />
                               </Button>
@@ -344,7 +344,7 @@ const DashboardContent = ({ active }) => {
                         renderCell: (params) => {
                           return (
                             <>
-                              <Button onClick={() => handleDelete(params.id)}>
+                              <Button onClick={() => handleDelete(params.id)} className="flex items-center justify-start">
                                 <MdDeleteForever size={20} />
                               </Button>
                             </>
@@ -366,7 +366,7 @@ const DashboardContent = ({ active }) => {
                                 setEmail(params.row.email);
                                 setPassword(params.row.password);
                                 setOptional(params.row.optional);
-                              }}>
+                              }} className="flex items-center justify-start">
                                 <AiFillEye size={20} />
                               </Button>
                             </>
