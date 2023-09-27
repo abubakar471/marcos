@@ -301,6 +301,19 @@
     clsx "^2.0.0"
     prop-types "^15.8.1"
 
+"@mui/base@^5.0.0-beta.17":
+  version "5.0.0-beta.17"
+  resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-beta.17.tgz#98b7ef6a3176b7aaf59ac8862d3271acb6876bc0"
+  integrity sha512-xNbk7iOXrglNdIxFBN0k3ySsPIFLWCnFxqsAYl7CIcDkD9low4kJ7IUuy6ctwx/HAy2fenrT3KXHr1sGjAMgpQ==
+  dependencies:
+    "@babel/runtime" "^7.22.15"
+    "@floating-ui/react-dom" "^2.0.2"
+    "@mui/types" "^7.2.4"
+    "@mui/utils" "^5.14.11"
+    "@popperjs/core" "^2.11.8"
+    clsx "^2.0.0"
+    prop-types "^15.8.1"
+
 "@mui/core-downloads-tracker@^5.14.10":
   version "5.14.10"
   resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.14.10.tgz#32a8581be98344bbda5ed31fc7b41788bd2e3bc5"
@@ -373,6 +386,16 @@
   version "5.14.10"
   resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.14.10.tgz#4b0a2a26f1ee12323010daa9d7aecf3384acfc3c"
   integrity sha512-Rn+vYQX7FxkcW0riDX/clNUwKuOJFH45HiULxwmpgnzQoQr3A0lb+QYwaZ+FAkZrR7qLoHKmLQlcItu6LT0y/Q==
+  dependencies:
+    "@babel/runtime" "^7.22.15"
+    "@types/prop-types" "^15.7.5"
+    prop-types "^15.8.1"
+    react-is "^18.2.0"
+
+"@mui/utils@^5.14.11":
+  version "5.14.11"
+  resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.14.11.tgz#d19a1d8725ffd16c6c6817f00b5172931958fb9a"
+  integrity sha512-fmkIiCPKyDssYrJ5qk+dime1nlO3dmWfCtaPY/uVBqCRMBZ11JhddB9m8sjI2mgqQQwRJG5bq3biaosNdU/s4Q==
   dependencies:
     "@babel/runtime" "^7.22.15"
     "@types/prop-types" "^15.7.5"

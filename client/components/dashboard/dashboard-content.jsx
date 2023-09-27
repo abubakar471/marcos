@@ -11,6 +11,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import { Backdrop, Button, CircularProgress, TextField } from "@mui/material";
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import EditPasswordModal from "../modal/edit-password-modal";
 import ShowModal from "../modal/show-modal";
 import DashboardHelp from "./dashboard-help";
