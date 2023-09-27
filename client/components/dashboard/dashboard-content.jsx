@@ -131,6 +131,7 @@ const DashboardContent = ({ active }) => {
           setSearchQuery("");
           setOpen(false);
           setOpenEditModal(false);
+          setShowModalOpen(false);
           fetchPasswords();
         }
       } catch (err) {
