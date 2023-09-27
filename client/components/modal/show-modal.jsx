@@ -4,7 +4,7 @@ import { TextareaAutosize } from "@mui/base";
 
 const ShowModal = ({ open, setOpen,
     title, setTitle, platform, setPlatform, email, setEmail, password, setPassword,
-    optional, setOptional, handleEditSubmit, editModalData, loading, error }) => {
+    optional, setOptional, handleEditSubmit, editModalData, loading, error, id, setId, handleDelete }) => {
     return (
         <div>
             <div className="mx-auto my-12 w-[90%] md:w-[50%] lg:w-[50%] xl:w-[50%] 
@@ -40,6 +40,10 @@ const ShowModal = ({ open, setOpen,
                         {loading ? "please wait..." : "Update"}
                     </button>
                 </form>
+
+                <button onClick={() => handleDelete(id)} disabled={loading ? true : false} className="p-2 my-2 bg-red-700 text-white shadow-sm rounded w-full">
+                    {loading ? "please wait..." : "Delete"}
+                </button>
             </div>
         </div>
     )

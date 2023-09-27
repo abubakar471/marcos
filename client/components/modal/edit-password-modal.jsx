@@ -41,9 +41,9 @@ const EditPasswordModal = ({ open, setOpen,
                     </button>
                 </form>
 
-                {/* <button type="button" onClick={() => handleDelete(id)} disabled={loading ? true : false} className="p-2 my-2 bg-red-700 text-white shadow-sm rounded w-full">
+                <button onClick={() => handleDelete(id)} disabled={loading ? true : false} className="p-2 my-2 bg-red-700 text-white shadow-sm rounded w-full">
                     {loading ? "please wait..." : "Delete"}
-                </button> */}
+                </button>
             </div>
         </div>
     )
