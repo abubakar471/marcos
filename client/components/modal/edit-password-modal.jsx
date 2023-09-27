@@ -4,7 +4,7 @@ import { TextareaAutosize } from "@mui/base";
 
 const EditPasswordModal = ({ open, setOpen,
     title, setTitle, platform, setPlatform, email, setEmail, password, setPassword,
-    optional, setOptional, handleEditSubmit, editModalData, loading, error }) => {
+    optional, setOptional, handleEditSubmit, editModalData, loading, error, handleDelete, id, setId }) => {
     return (
         <div>
             <div className="mx-auto my-12 w-[90%] md:w-[50%] lg:w-[50%] xl:w-[50%] 
@@ -36,6 +36,9 @@ const EditPasswordModal = ({ open, setOpen,
                     <TextField type="text" id="standard-basic" label="E-mail or Username" variant="standard" value={email} onChange={e => setEmail(e.target.value)} />
                     <TextField type="text" id="standard-basic" label="Password" variant="standard" value={password} onChange={e => setPassword(e.target.value)} />
                     <TextareaAutosize minRows={3} placeholder="[optional] Backup codes, Security Keys, etc... " value={optional} onChange={e => setOptional(e.target.value)} className="mt-4 outline-none border-b border-gray-700" />
+                    <button type="button" onClick={() => handleDelete(id)} disabled={loading ? true : false} className="p-2 my-2 bg-red-700 text-white shadow-sm rounded w-full">
+                        {loading ? "please wait..." : "Delete"}
+                    </button>
                     <button disabled={loading ? true : false} className="p-2 my-2 bg-blue-700 text-white shadow-sm rounded w-full">
                         {loading ? "please wait..." : "Update"}
                     </button>
