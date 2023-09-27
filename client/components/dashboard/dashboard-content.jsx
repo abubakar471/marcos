@@ -123,8 +123,13 @@ const DashboardContent = ({ active }) => {
         });
 
         if (data.success) {
+          setTitle("");
+          setPlatform("");
+          setEmail("");
+          setPassword("");
+          setOptional("");
+          setSearchQuery("");
           setOpen(false);
-          setOpenEditModal(false);
           fetchPasswords();
         }
       } catch (err) {
