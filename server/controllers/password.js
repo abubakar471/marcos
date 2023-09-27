@@ -169,11 +169,13 @@ const updatePassword = async (req, res) => {
   }
 
   if (req.body.email) {
-    data.email = req.body.email;
+    const encryptedEmail = encryptCredentials(req.body.email);
+    data.email = encryptedEmail;
   }
 
   if (req.body.password) {
-    data.password = req.body.password;
+    const encryptedPassword = encryptCredentials(req.body.password);
+    data.password = encryptedPassword;
   }
 
   if (req.body.optional) {
@@ -207,6 +209,8 @@ const getSearchResults = async (req, res) => {
   if (!searchQuery || !userId) {
     return;
   }
+  
+  const encryptedEmail = encryptCredentials(searchQuery);
 
   try {
     const result = await Password.find({
@@ -218,7 +222,7 @@ const getSearchResults = async (req, res) => {
               title: { $regex: searchQuery, $options: 'i' }
             },
             {
-              email: { $regex: searchQuery, $options: 'i' }
+              email: { $regex: encryptedEmail, $options: 'i' }
             },
             {
               platform: { $regex: searchQuery, $options: 'i' }
